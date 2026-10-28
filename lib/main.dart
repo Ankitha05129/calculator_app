@@ -52,18 +52,47 @@ class CalculatorApp extends StatelessWidget {
 ),
                 ),
               
-              Expanded(
-                flex: 3,
-                child: Center(
-                  child: Text(
-                    'Calculator buttons will appear here',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.grey,
+              
+Expanded(
+  flex: 3,
+  child: Column(
+    children: [
+      for (final row in [
+        ['7', '8', '9'],
+        ['4', '5', '6'],
+        ['1', '2', '3'],
+        ['0'],
+      ])
+        Expanded(
+          child: Row(
+            children: [
+              for (final number in row)
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(
+                          double.infinity,
+                          double.infinity,
+                        ),
+                        textStyle: const TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                      child: Text(number),
                     ),
                   ),
                 ),
-              ),
+              if (row.length == 1) const Spacer(flex: 2),
+            ],
+          ),
+        ),
+    ],
+  ),
+),
+
             ],
           ),
         ),
