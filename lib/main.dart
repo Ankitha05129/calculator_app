@@ -29,19 +29,29 @@ class CalculatorApp extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
-                  alignment: Alignment.bottomRight,
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(24),
-                  child: const Text(
-                    '0',
-                    style: TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                child: Column(
+  mainAxisAlignment: MainAxisAlignment.end,
+  crossAxisAlignment: CrossAxisAlignment.end,
+  children: const [
+    Text(
+      '0',
+      style: TextStyle(
+        fontSize: 24,
+        color: Colors.grey,
+      ),
+    ),
+    SizedBox(height: 8),
+    Text(
+      '0',
+      style: TextStyle(
+        fontSize: 48,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ],
+),
                 ),
-              ),
+              
               Expanded(
                 flex: 3,
                 child: Center(
