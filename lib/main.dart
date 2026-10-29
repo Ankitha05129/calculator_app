@@ -71,8 +71,10 @@ Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(5),
                     child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
+                           onPressed: () {
+  debugPrint('Number $number pressed');
+},
+  style: ElevatedButton.styleFrom(
                         minimumSize: const Size(
                           double.infinity,
                           double.infinity,
