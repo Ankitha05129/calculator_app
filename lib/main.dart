@@ -30,71 +30,71 @@ class CalculatorApp extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Column(
-  mainAxisAlignment: MainAxisAlignment.end,
-  crossAxisAlignment: CrossAxisAlignment.end,
-  children: const [
-    Text(
-      '0',
-      style: TextStyle(
-        fontSize: 24,
-        color: Colors.grey,
-      ),
-    ),
-    SizedBox(height: 8),
-    Text(
-      '0',
-      style: TextStyle(
-        fontSize: 48,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  ],
-),
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: const [
+                    Text(
+                      '0',
+                      style: TextStyle(
+                        fontSize: 24,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Text(
+                      '0',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
-              
-              
-Expanded(
-  flex: 3,
-  child: Column(
-    children: [
-      for (final row in [
-        ['7', '8', '9'],
-        ['4', '5', '6'],
-        ['1', '2', '3'],
-        ['0'],
-      ])
-        Expanded(
-          child: Row(
-            children: [
-              for (final number in row)
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: ElevatedButton(
-                           onPressed: () {
-  debugPrint('Number $number pressed');
-},
-  style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(
-                          double.infinity,
-                          double.infinity,
-                        ),
-                        textStyle: const TextStyle(
-                          fontSize: 24,
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    for (final row in [
+                      ['7', '8', '9', '/'],
+                      ['4', '5', '6', '*'],
+                      ['1', '2', '3', '-'],
+                      ['0', '+'],
+                    ])
+                      Expanded(
+                        child: Row(
+                          children: [
+                            for (final button in row)
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      debugPrint(
+                                        'Button $button pressed',
+                                      );
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size(
+                                        double.infinity,
+                                        double.infinity,
+                                      ),
+                                      textStyle: const TextStyle(
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                    child: Text(button),
+                                  ),
+                                ),
+                              ),
+                            if (row.length == 2)
+                              const Spacer(flex: 2),
+                          ],
                         ),
                       ),
-                      child: Text(number),
-                    ),
-                  ),
+                  ],
                 ),
-              if (row.length == 1) const Spacer(flex: 2),
-            ],
-          ),
-        ),
-    ],
-  ),
-),
-
+              ),
             ],
           ),
         ),
