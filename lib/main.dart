@@ -14,15 +14,48 @@ class CalculatorApp extends StatefulWidget {
 
 class _CalculatorAppState extends State<CalculatorApp> {
   String display = '0';
+  double firstNumber = 0;
+  String operator = '';
+  bool newNumber = false;
 
   void buttonPressed(String button) {
     setState(() {
       if ('0123456789'.contains(button)) {
-        if (display == '0') {
+        if (display == '0' || newNumber) {
           display = button;
+          newNumber = false;
         } else {
           display += button;
         }
+      } else if ('+-*/'.contains(button)) {
+        firstNumber = double.parse(display);
+        operator = button;
+        newNumber = true;
+      } else if (button == '=') {
+        double secondNumber = double.parse(display);
+        double result = 0;
+
+        switch (operator) {
+          case '+':
+            result = firstNumber + secondNumber;
+            break;
+          case '-':
+            result = firstNumber - secondNumber;
+            break;
+          case '*':
+            result = firstNumber * secondNumber;
+            break;
+          case '/':
+            result = firstNumber / secondNumber;
+            break;
+        }
+
+        display = result == result.toInt()
+            ? result.toInt().toString()
+            : result.toString();
+
+        newNumber = true;
+        operator = '';
       }
     });
   }
@@ -67,7 +100,7 @@ class _CalculatorAppState extends State<CalculatorApp> {
                       ['7', '8', '9', '/'],
                       ['4', '5', '6', '*'],
                       ['1', '2', '3', '-'],
-                      ['0', '+'],
+                      ['0', '+', '='],
                     ])
                       Expanded(
                         child: Row(
