@@ -20,7 +20,18 @@ class _CalculatorAppState extends State<CalculatorApp> {
 
   void buttonPressed(String button) {
     setState(() {
-      if ('0123456789'.contains(button)) {
+      if (button == 'C') {
+        display = '0';
+        firstNumber = 0;
+        operator = '';
+        newNumber = false;
+      } else if (button == '⌫') {
+        if (display.length > 1) {
+          display = display.substring(0, display.length - 1);
+        } else {
+          display = '0';
+        }
+      } else if ('0123456789'.contains(button)) {
         if (display == '0' || newNumber) {
           display = button;
           newNumber = false;
@@ -100,7 +111,8 @@ class _CalculatorAppState extends State<CalculatorApp> {
                       ['7', '8', '9', '/'],
                       ['4', '5', '6', '*'],
                       ['1', '2', '3', '-'],
-                      ['0', '+', '='],
+                      ['C', '0', '⌫', '+'],
+                      ['='],
                     ])
                       Expanded(
                         child: Row(
@@ -126,8 +138,6 @@ class _CalculatorAppState extends State<CalculatorApp> {
                                   ),
                                 ),
                               ),
-                            if (row.length == 2)
-                              const Spacer(flex: 2),
                           ],
                         ),
                       ),
