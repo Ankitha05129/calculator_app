@@ -1,17 +1,30 @@
-# calculator_app
+# Flutter Calculator App
 
-A new Flutter project.
+## Project Description
+A simple calculator application developed using Flutter and Dart.
 
-## Getting Started
+## Features
+- Number input buttons (0-9)
+- Addition, subtraction, multiplication and division
+- Clear button
+- Delete button
+- Displays calculation results
+- Handles division by zero
+- Simple and attractive user interface
 
-This project is a starting point for a Flutter application.
+## Technologies Used
+- Flutter
+- Dart
+- Visual Studio Code
 
-A few resources to get you started if this is your first Flutter project:
+## How to Run
+1. Install Flutter SDK.
+2. Open the project folder in VS Code.
+3. Run `flutter pub get`.
+4. Run `flutter run -d chrome`.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Developer
+Ankitha
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project
+Flutter Calculator App

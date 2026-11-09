@@ -3,10 +3,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:calculator_app/main.dart';
 
 void main() {
-  testWidgets('Calculator app displays zero', (WidgetTester tester) async {
+  testWidgets('Calculator app displays zero',
+      (WidgetTester tester) async {
     await tester.pumpWidget(const CalculatorApp());
 
+    expect(find.text('0'), findsNWidgets(2));
     expect(find.text('Calculator'), findsOneWidget);
-    expect(find.text('0'), findsOneWidget);
   });
 }
