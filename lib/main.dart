@@ -43,6 +43,8 @@ class _CalculatorAppState extends State<CalculatorApp> {
         operator = button;
         newNumber = true;
       } else if (button == '=') {
+        if (operator.isEmpty) return;
+
         double secondNumber = double.parse(display);
         double result = 0;
 
@@ -57,6 +59,12 @@ class _CalculatorAppState extends State<CalculatorApp> {
             result = firstNumber * secondNumber;
             break;
           case '/':
+            if (secondNumber == 0) {
+              display = 'Cannot divide by zero';
+              operator = '';
+              newNumber = true;
+              return;
+            }
             result = firstNumber / secondNumber;
             break;
         }
@@ -82,9 +90,15 @@ class _CalculatorAppState extends State<CalculatorApp> {
         useMaterial3: true,
       ),
       home: Scaffold(
+        backgroundColor: Colors.deepPurple.shade50,
         appBar: AppBar(
-          title: const Text('Calculator'),
+          title: const Text(
+            'Calculator',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
+          backgroundColor: Colors.deepPurple,
+          foregroundColor: Colors.white,
         ),
         body: Padding(
           padding: const EdgeInsets.all(16),
@@ -92,19 +106,30 @@ class _CalculatorAppState extends State<CalculatorApp> {
             children: [
               Expanded(
                 flex: 2,
-                child: Align(
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(20),
                   alignment: Alignment.bottomRight,
-                  child: Text(
-                    display,
-                    style: const TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      display,
+                      style: const TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                      ),
                     ),
                   ),
                 ),
               ),
+              const SizedBox(height: 12),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Column(
                   children: [
                     for (final row in [
@@ -126,12 +151,28 @@ class _CalculatorAppState extends State<CalculatorApp> {
                                       buttonPressed(button);
                                     },
                                     style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          button == 'C' ||
+                                                  button == '⌫'
+                                              ? Colors.red.shade100
+                                              : '+-*/='.contains(button)
+                                                  ? Colors.deepPurple
+                                                  : Colors.white,
+                                      foregroundColor:
+                                          '+-*/='.contains(button)
+                                              ? Colors.white
+                                              : Colors.deepPurple,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15),
+                                      ),
                                       minimumSize: const Size(
                                         double.infinity,
                                         double.infinity,
                                       ),
                                       textStyle: const TextStyle(
                                         fontSize: 24,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     child: Text(button),
