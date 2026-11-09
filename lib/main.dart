@@ -5,8 +5,27 @@ void main() {
   runApp(const CalculatorApp());
 }
 
-class CalculatorApp extends StatelessWidget {
+class CalculatorApp extends StatefulWidget {
   const CalculatorApp({super.key});
+
+  @override
+  State<CalculatorApp> createState() => _CalculatorAppState();
+}
+
+class _CalculatorAppState extends State<CalculatorApp> {
+  String display = '0';
+
+  void buttonPressed(String button) {
+    setState(() {
+      if ('0123456789'.contains(button)) {
+        if (display == '0') {
+          display = button;
+        } else {
+          display += button;
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,26 +48,15 @@ class CalculatorApp extends StatelessWidget {
             children: [
               Expanded(
                 flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    Text(
-                      '0',
-                      style: TextStyle(
-                        fontSize: 24,
-                        color: Colors.grey,
-                      ),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    display,
+                    style: const TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      '0',
-                      style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               Expanded(
@@ -70,9 +78,7 @@ class CalculatorApp extends StatelessWidget {
                                   padding: const EdgeInsets.all(5),
                                   child: ElevatedButton(
                                     onPressed: () {
-                                      debugPrint(
-                                        'Button $button pressed',
-                                      );
+                                      buttonPressed(button);
                                     },
                                     style: ElevatedButton.styleFrom(
                                       minimumSize: const Size(
