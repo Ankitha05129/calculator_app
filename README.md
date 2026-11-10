@@ -1,3 +1,4 @@
+
 # Flutter Calculator App
 
 ## Project Description
@@ -10,12 +11,16 @@ A simple calculator application developed using Flutter and Dart.
 - Delete button
 - Displays calculation results
 - Handles division by zero
-- Simple and attractive user interface
+- Attractive purple user interface
 
 ## Technologies Used
 - Flutter
 - Dart
 - Visual Studio Code
+
+## Application Screenshot
+
+![Calculator App](screenshots/03_calculator_display.png)
 
 ## How to Run
 1. Install Flutter SDK.
